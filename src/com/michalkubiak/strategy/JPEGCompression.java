@@ -2,7 +2,7 @@ package com.michalkubiak.strategy;
 
 // This concrete class implements the compression interface
 // Another class called PNGCompression could be created, as any other
-// Class using differnet compression types.
+// Class using different compression types.
 
 public class JPEGCompression implements Compression{
     @Override
