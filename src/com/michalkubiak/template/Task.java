@@ -1,8 +1,6 @@
 package com.michalkubiak.template;
 
-public class Task {
-
-
+public abstract class Task {
     private RecordActivities recordActivities;
 
     public Task(RecordActivities recordActivities) {
@@ -14,8 +12,9 @@ public class Task {
         recordActivities.record();
 
         // what happens after here is determined by the subclasses
+        callExecute();
     }
 
-
-
+    public abstract void callExecute();
 }
+
