@@ -1,19 +1,15 @@
 package com.michalkubiak.template;
 
-public class TransferFunds {
+public class TransferFunds extends Task{
 
-    private RecordActivities recordActivities;
-
+    // New constructor using super
     public TransferFunds(RecordActivities recordActivities) {
-        this.recordActivities = recordActivities;
+        super(recordActivities);
     }
 
-    // Task which records the trasfer and transfers money.
-    public void task(){
-        // This records the activities
-        recordActivities.record();
-
-        System.out.println("Transfer Funds");
-
+    @Override
+    public void callExecute() {
+        // Here we define our logic for executing the transfer of funds
+        System.out.println("Funds Transfered");
     }
 }
