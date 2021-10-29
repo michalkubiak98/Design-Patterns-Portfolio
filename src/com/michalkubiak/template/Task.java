@@ -20,6 +20,6 @@ public abstract class Task {
         callExecute();
     }
 
-    public abstract void callExecute();
+    protected abstract void callExecute();
 }
 
