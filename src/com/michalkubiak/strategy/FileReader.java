@@ -2,12 +2,12 @@ package com.michalkubiak.strategy;
 
 public class FileReader {
 
-    // Changed the type to Compression instead of String
+    // Changed the type to Compression instead of String | Also Filtering
     private Compression compression;
-    private String filter;
+    private Filtering filter;
 
     // Change the FileReader compression type from String to Compression
-    public FileReader(Compression compression, String filter) {
+    public FileReader(Compression compression, Filtering filter) {
         this.compression = compression;
         this.filter = filter;
     }
@@ -20,8 +20,9 @@ public class FileReader {
 
     public void storeFile(String file){
         compression.compression(file);
+        // Filter method of Filter concrete class
+        // Now we have flexibility in our Main class when using the File Reader!
+        filter.filter(file);
 
-        if(filter == "BlackAndWhite")
-            System.out.println("Apply Black And White filter"); // And so on
     }
 }
