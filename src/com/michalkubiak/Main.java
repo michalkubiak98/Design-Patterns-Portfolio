@@ -1,8 +1,6 @@
 package com.michalkubiak;
 
-import com.michalkubiak.command.AddUserCommand;
-import com.michalkubiak.command.Button;
-import com.michalkubiak.command.UserService;
+import com.michalkubiak.command.*;
 
 public class Main {
 
@@ -15,7 +13,15 @@ public class Main {
         var button = new Button(command);
         // perform click, which goes back to the user service and adds the user.
         button.click();
-        // TextBox
-        // Checkbox
+
+        var composite = new CompositeCommand();
+        // Lets say a user wants to crop and image and filter it with one button
+        // We add those commands into this composite command
+        composite.add(new CropImageCommand());
+        composite.add(new FilterCommand());
+
+        // We can now execute every command in the composite object
+        composite.execute();
+
     }
 }
