@@ -3,11 +3,17 @@ package com.michalkubiak.command;
 public class Button {
 
     private String label;
+    // Adding a new Command field
+    private Command command;
+
+    // Adding a Constructor to initialize the command field
+    public Button(Command command) {
+        this.command = command;
+    }
 
     public void click(){
+        command.execute();
 
-        // The locic for a button click goes here
-        // It can differ from button to button
     }
 
     public String getLabel() {
