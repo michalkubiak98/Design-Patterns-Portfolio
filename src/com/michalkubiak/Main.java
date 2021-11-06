@@ -1,27 +1,30 @@
 package com.michalkubiak;
 
-import com.michalkubiak.command.*;
+import com.michalkubiak.pageEditor.History;
+import com.michalkubiak.pageEditor.ItalicCommand;
+import com.michalkubiak.pageEditor.Page;
+import com.michalkubiak.pageEditor.UndoCommand;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        var service = new UserService();
-        // we need to pass this service into the AddUserCommand
-        var command = new AddUserCommand(service);
-        // Pass this object into the button
-        var button = new Button(command);
-        // perform click, which goes back to the user service and adds the user.
-        button.click();
+        var history = new History();
+        var page = new Page();
 
-        var composite = new CompositeCommand();
-        // Lets say a user wants to crop and image and filter it with one button
-        // We add those commands into this composite command
-        composite.add(new CropImageCommand());
-        composite.add(new FilterCommand());
+        page.setBody("New Body");
 
-        // We can now execute every command in the composite object
-        composite.execute();
+        // Command object which would be
+        // linked to a button perhaps
+        var italicCommand = new ItalicCommand(page, history);
+        italicCommand.execute();
+        // Check the page body
+        System.out.println(page.getBody());
+
+        // Checks history and undoes the <i> italic command
+        var undoCommand = new UndoCommand(history);
+        undoCommand.execute();
+        System.out.println(page.getBody());
 
     }
 }
