@@ -9,6 +9,6 @@ public class Source extends Observable{
 
     public void setNumber(int number) {
         this.number = number;
-        notifyObservers();
+        notifyObservers(number);
     }
 }

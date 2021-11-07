@@ -1,5 +1,5 @@
 package com.michalkubiak.observer;
 
 public interface Observer {
-    void update();
+    void update(int number);
 }

@@ -12,9 +12,9 @@ public class Observable {
     public void removeObserver(Observer observer) {
         observers.remove(observer);
     }
-    public void notifyObservers(){
+    public void notifyObservers(int number){
         for(var observer : observers){
-            observer.update();
+            observer.update(number);
         }
     }
 }
