@@ -1,6 +1,6 @@
 package com.michalkubiak.observer;
 
-public class Source {
+public class Source extends Observable{
     private int number;
 
     public int getNumber() {
@@ -9,5 +9,6 @@ public class Source {
 
     public void setNumber(int number) {
         this.number = number;
+        notifyObservers();
     }
 }
