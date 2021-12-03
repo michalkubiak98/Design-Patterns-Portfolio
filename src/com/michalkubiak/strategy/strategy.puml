@@ -1,0 +1,34 @@
+@startuml
+interface com.michalkubiak.strategy.Filtering {
++ void filter (String )
+}
+
+class com.michalkubiak.strategy.FileReader{
+- com.michalkubiak.strategy.Compression compression
+- com.michalkubiak.strategy.Filtering filter
++ void FileReader (Compression compression, Filtering )
++ void storeFile (String )
+}
+
+interface com.michalkubiak.strategy.Compression {
++ void compression (String )
+}
+
+class com.michalkubiak.strategy.BlackAndWhite{
++ BlackAndWhite()
++ void filter (String )
+}
+
+class com.michalkubiak.strategy.JPEGCompression{
++ JPEGCompression()
++ void compression (String )
+}
+
+com.michalkubiak.strategy.FileReader "1" *-- "1" com.michalkubiak.strategy.Filtering
+com.michalkubiak.strategy.FileReader "1" *-- "1" com.michalkubiak.strategy.Compression
+
+com.michalkubiak.strategy.Filtering <|.. com.michalkubiak.strategy.BlackAndWhite
+com.michalkubiak.strategy.Compression <|.. com.michalkubiak.strategy.JPEGCompression
+
+@enduml
+
