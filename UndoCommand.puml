@@ -1,0 +1,44 @@
+@startuml
+class com.michalkubiak.pageEditor.UndoCommand {
+- History history
++ void execute()
+}
+interface com.michalkubiak.pageEditor.UndoableCommand {
+~ void unexecute()
+}
+class com.michalkubiak.pageEditor.Page {
+- String body
++ void makeItalic()
++ String getBody()
++ void setBody(String)
+}
+interface com.michalkubiak.pageEditor.Command {
+~ void execute()
+}
+class com.michalkubiak.pageEditor.History {
+- Deque<UndoableCommand> commands
++ void push(UndoableCommand)
++ UndoableCommand pop()
++ int size()
+}
+class com.michalkubiak.pageEditor.ItalicCommand {
+- String previousBody
+- Page page
+- History history
++ void execute()
++ void unexecute()
+}
+
+
+com.michalkubiak.pageEditor.Command <|.. com.michalkubiak.pageEditor.UndoCommand
+com.michalkubiak.pageEditor.Command <|-- com.michalkubiak.pageEditor.UndoableCommand
+com.michalkubiak.pageEditor.UndoableCommand <|.. com.michalkubiak.pageEditor.ItalicCommand
+
+com.michalkubiak.pageEditor.ItalicCommand  "1" *-->  "1" com.michalkubiak.pageEditor.Page
+com.michalkubiak.pageEditor.ItalicCommand  "1" *-->  "1" com.michalkubiak.pageEditor.History
+
+com.michalkubiak.pageEditor.History  "*1" *--> com.michalkubiak.pageEditor.UndoableCommand
+com.michalkubiak.pageEditor.UndoableCommand "1"  *--> "1" com.michalkubiak.pageEditor.History
+
+
+@enduml

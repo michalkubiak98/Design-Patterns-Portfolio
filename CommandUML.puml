@@ -1,0 +1,45 @@
+@startuml
+class com.michalkubiak.command.FilterCommand {
++ void execute()
+}
+class com.michalkubiak.command.AddUserCommand {
+- UserService userService
++ AddUserCommand(UserService)
++ void execute()
+}
+class com.michalkubiak.command.Button {
+- String label
+- Command command
++ Button(Command)
++ void click()
++ String getLabel()
++ void setLabel(String)
+}
+class com.michalkubiak.command.CropImageCommand {
++ void execute()
+}
+interface com.michalkubiak.command.Command {
+~ void execute()
+}
+class com.michalkubiak.command.CompositeCommand {
+- List<Command> commands
++ void add(Command)
++ void execute()
+}
+class com.michalkubiak.command.UserService {
++ void addUser()
+}
+
+
+com.michalkubiak.command.Command <|.. com.michalkubiak.command.FilterCommand
+com.michalkubiak.command.Command <|.. com.michalkubiak.command.AddUserCommand
+com.michalkubiak.command.Command <|.. com.michalkubiak.command.CropImageCommand
+com.michalkubiak.command.Command <|.. com.michalkubiak.command.CompositeCommand
+
+com.michalkubiak.command.Command "1" <--* "1" com.michalkubiak.command.Button
+com.michalkubiak.command.Command "1" <--* "*1" com.michalkubiak.command.CompositeCommand
+
+
+com.michalkubiak.command.AddUserCommand "1" *--> "1" com.michalkubiak.command.UserService
+
+@enduml
