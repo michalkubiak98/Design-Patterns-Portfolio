@@ -1,0 +1,30 @@
+@startuml
+class com.michalkubiak.observer.Observable {
+- List<Observer> observers
++ void addObserver(Observer)
++ void removeObserver(Observer)
++ void notifyObservers(int)
+}
+class com.michalkubiak.observer.Source {
+- int number
++ int getNumber()
++ void setNumber(int)
+}
+interface com.michalkubiak.observer.Observer {
+~ void update(int)
+}
+class com.michalkubiak.observer.Chart {
++ void update(int)
+}
+class com.michalkubiak.observer.Calendar {
++ void update(int)
+}
+
+
+com.michalkubiak.observer.Observable <|-- com.michalkubiak.observer.Source
+com.michalkubiak.observer.Observer <|.. com.michalkubiak.observer.Chart
+com.michalkubiak.observer.Observer <|.. com.michalkubiak.observer.Calendar
+
+com.michalkubiak.observer.Observable "1" *--> "*" com.michalkubiak.observer.Observer
+
+@enduml
