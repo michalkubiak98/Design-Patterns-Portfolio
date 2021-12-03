@@ -1,0 +1,25 @@
+@startuml 
+abstract class com.michalkubiak.template.Task{
+- com.michalkubiak.template.RecordActivities recordActivities
++ void Task ()
++ void Task (RecordActivities )
++ void execute ()
+# void callExecute ()
+}
+
+class com.michalkubiak.template.TransferFunds{
+- com.michalkubiak.template.RecordActivities recordActivities
+# void callExecute ()
+}
+class com.michalkubiak.template.RecordActivities{
++ RecordActivities()
++ void record ()
+}
+
+
+com.michalkubiak.template.TransferFunds --|> com.michalkubiak.template.Task
+com.michalkubiak.template.Task "1" *--> "1" com.michalkubiak.template.RecordActivities
+
+
+
+@enduml
