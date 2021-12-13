@@ -1,25 +1,20 @@
 package com.michalkubiak;
 
-import com.michalkubiak.strategy.BlackAndWhite;
-import com.michalkubiak.strategy.FileReader;
-import com.michalkubiak.strategy.JPEGCompression;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        // We create a new fileReader which does JPEG compression ona file
-        // In this case an image lets say
-        // And will apply JPEG Compression and a Black and White filter!
+        AnimalFactory animalsFactory = new AnimalFactory();
 
-        var fileReader = new FileReader(
-                new JPEGCompression(),
-                new BlackAndWhite()
-                );
+        Animal animal = animalsFactory.getAnimal("rabbit");
+        animal.setAge(2);
 
-        // Apply the store file method
-        fileReader.storeFile("Family Photo");
+        Animal animal2 = animalsFactory.getAnimal("horse");
+        animal2.setAge(4);
 
+        System.out.println(animal.getAge());
+        System.out.println(animal2.getAge());
+    }
 
-    };
 }
+
